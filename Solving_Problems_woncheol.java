@@ -7,8 +7,9 @@ public class Solving_Problems_woncheol {
         int score = 0;
         List<Integer> answerList = new ArrayList<>();
 
-        String[] quesArr = {"1. Python에서 변수를 선언하는 방법은? (점수: 10점)", "2. Python에서 리스트(List)의 특징은 무엇인가요? (점수: 15점)",
-                "3. Python에서 조건문을 작성하는 방법은? (점수: 10점)", "4. Python에서 함수를 정의하는 방법은? (점수: 5점)"};
+        Integer[] scoreArr = {10, 15, 10, 5};
+        String[] quesArr = {"Python에서 변수를 선언하는 방법은?", "Python에서 리스트(List)의 특징은 무엇인가요?",
+                "Python에서 조건문을 작성하는 방법은?", "Python에서 함수를 정의하는 방법은?"};
         String[] quesArr01 = {"var name", "name = value", "set name", "name == value"};
         String[] quesArr02 = {"순서가 있고 변경 가능하다", "중복된 값을 가질 수 없다", "원소를 추가하거나 삭제할 수 없다", "정렬된 상태로 유지된다"};
         String[] quesArr03 = {"if-else", "for-in", "while", "def"};
@@ -19,27 +20,24 @@ public class Solving_Problems_woncheol {
         List<String> quesList04 = Arrays.asList(quesArr04);
         List[] questionArr = {quesList01, quesList02, quesList03, quesList04};
 
-//        Integer[] indexArr = {1,2,3,4};
-//        List<Integer> indexList = Arrays.asList(indexArr);
-//        Collections.shuffle(indexList);
-//        for (int i = 0; i < indexList.size(); i++) {
-//            System.out.println(indexList.get(i));
-//        }
+        Integer[] indexArr = {0, 1, 2, 3};
+        List<Integer> indexList = Arrays.asList(indexArr);
+        Collections.shuffle(indexList);
 
         for (int i = 0; i < quesArr.length; i++) {
-            System.out.println(quesArr[i]);
-            Collections.shuffle(questionArr[i]);
-            for (int j = 0; j < questionArr[i].size(); j++) {
+            System.out.println((i + 1) + ". " + quesArr[indexArr[i]] + " (점수 : " + scoreArr[indexArr[i]] + "점)");
+            Collections.shuffle(questionArr[indexArr[i]]);
+            for (int j = 0; j < questionArr[indexArr[i]].size(); j++) {
                 if (j > 0) System.out.print(" ");
-                System.out.print((j + 1) + ") " + questionArr[i].get(j));
+                System.out.print((j + 1) + ") " + questionArr[indexArr[i]].get(j));
             }
             System.out.print("\n" + "-정답 : ");
             int answer = scanner.nextInt();
             answerList.add(answer);
-            if (questionArr[i].get(answer - 1).equals("name == value")) score += 10;
-            else if (questionArr[i].get(answer - 1).equals("중복된 값을 가질 수 없다")) score += 15;
-            else if (questionArr[i].get(answer - 1).equals("while")) score += 10;
-            else if (questionArr[i].get(answer - 1).equals("def")) score += 5;
+            if (questionArr[indexArr[i]].get(answer - 1).equals("name == value")) score += scoreArr[indexArr[i]];
+            else if (questionArr[indexArr[i]].get(answer - 1).equals("중복된 값을 가질 수 없다")) score += scoreArr[indexArr[i]];
+            else if (questionArr[indexArr[i]].get(answer - 1).equals("while")) score += scoreArr[indexArr[i]];
+            else if (questionArr[indexArr[i]].get(answer - 1).equals("def")) score += scoreArr[indexArr[i]];
         }
 
         System.out.println("—----- 결과 —-------------");
